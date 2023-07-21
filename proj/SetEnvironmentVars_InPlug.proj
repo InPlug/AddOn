@@ -7,8 +7,8 @@
    	<VishnuRoot Condition="'$(Vishnu_Root)'!=''">$(Vishnu_Root)</VishnuRoot>
    	<AssemblyRoot Condition="'$(Assembly_Root)'!=''">$(Assembly_Root)</AssemblyRoot>
  	  <AssemblyRoot Condition="'$(Assembly_Root)'=='' and $(Vishnu_Root)!=''">$(VishnuRoot)/ReadyBin/Assemblies</AssemblyRoot>
-   	<UserAssemblyRoot>$(VishnuRoot)/ReadyBin/UserAssemblies</UserAssemblyRoot>
- 	  
+   	<UserAssemblyRoot Condition="'$(UserAssembly_Root)'!=''">$(UserAssembly_Root)</UserAssemblyRoot>
+ 	  <UserAssemblyRoot Condition="'$(UserAssembly_Root)'=='' and $(Vishnu_Root)!=''">$(VishnuRoot)/ReadyBin/UserAssemblies</UserAssemblyRoot>  
   </PropertyGroup>
 	  
 	<Target Name="ValidateSettings" BeforeTargets="Build">
@@ -17,8 +17,8 @@
    		       Condition="'$(Vishnu_Company)'!=''" />
    	<Message Importance="High" Text="ValidateSettings ==&gt; VishnuRoot: $(VishnuRoot), AssemblyRoot: $(AssemblyRoot)" />
     
-    <Error Text="ValidateSettings ==&gt; Couldn't find a valid Vishnu-Root directory."
-    	     Condition="!Exists('$(VishnuRoot)')" />
+    <!--Error Text="ValidateSettings ==&gt; Couldn't find a valid Vishnu-Root directory."
+    	     Condition="!Exists('$(VishnuRoot)')" /-->
     <Error Text="ValidateSettings ==&gt; Couldn't find a valid assembly directory."
     	     Condition="!Exists('$(AssemblyRoot)')" />
 
